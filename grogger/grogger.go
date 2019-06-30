@@ -6,12 +6,24 @@
 
 package main
 
-
 import (
-    "fmt"
+    "flag"
+    "log"
+    "net/http"
+    "strconv"
 )
 
 
 func main() {
-    fmt.Println("Hello")
+    intport := flag.Int("port", 2358, "port to listen for requests")
+    flag.Parse()
+
+    port := strconv.Itoa(*intport)
+    
+    sessionManager := newSessionManager()
+
+    err := http.ListenAndServe(":" + port, newHandler(sessionManager))
+    if err != nil {
+        log.Fatal(err)
+    }
 }
