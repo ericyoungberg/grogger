@@ -7,7 +7,7 @@ BIN       = grogger
 BUILD_CONTAINER = "${BIN}-builder"
 
 # Set default compiler
-GO := go
+GO := packr
 
 
 #-- Generate flags

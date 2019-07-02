@@ -20,9 +20,9 @@ func main() {
 
     port := strconv.Itoa(*intport)
     
-    sessionManager := newSessionManager()
+    sessionManager := NewSessionManager()
 
-    err := http.ListenAndServe(":" + port, newHandler(sessionManager))
+    err := http.ListenAndServe(":" + port, NewServer(sessionManager))
     if err != nil {
         log.Fatal(err)
     }
