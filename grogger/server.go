@@ -79,8 +79,10 @@ func (s Server) handleWS(w http.ResponseWriter, r *http.Request) {
             return
         }
 
-        session.log(string(msg))
-        session.log(fmt.Sprintf("%v, %v", session.clients, session.peers(client)))
+        sender := fmt.Sprintf("{\"sender\": \"%s\",", client.browser)
+        msgWithSender := strings.Replace(string(msg), "{", sender, 1)
+        session.log(msgWithSender)
+        msg = []byte(msgWithSender)
 
         for _, peer := range session.peers(client) {
             if err := peer.connection.WriteMessage(msgType, msg); err != nil {

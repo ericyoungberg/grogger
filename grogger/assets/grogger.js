@@ -30,7 +30,8 @@
     });
 
     socket.addEventListener('message', ({ data }) => {
-        console.log(data, false);
+        data = JSON.parse(data);
+        console[data.method](`${data.sender}: ${data.message}`, false);
     });
 
 })();
