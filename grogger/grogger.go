@@ -22,7 +22,8 @@ func main() {
     
     sessionManager := NewSessionManager()
 
-    err := http.ListenAndServe(":" + port, NewServer(sessionManager))
+    log.Println("Grogger has started on :" + port + " ...")
+    err := http.ListenAndServe(":" + port, NewServer(sessionManager, "./assets"))
     if err != nil {
         log.Fatal(err)
     }

@@ -70,4 +70,3 @@ install:
 clean:
 		@echo "+ $@"
 		rm -rf $(BUILD_DIR)
-		rm -rf $(GOPATH)/bin/$(PRQL_BIN) $(GOPATH)/bin/$(PRQLD_BIN)
