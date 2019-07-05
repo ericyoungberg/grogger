@@ -14,19 +14,21 @@ import (
 type Client struct {
     address   string
     agent     string
-    browser   string
+    id        string
 
     connection *websocket.Conn
 }
 
 func (c Client) equal(_c *Client) bool {
-    return _c.address == c.address && _c.browser == c.browser
+    return _c.address == c.address && _c.id == c.id
 }
 
 func NewClient(r *http.Request) *Client {
+    browserId := r.Header.Get("Sec-WebSocket-Key")[:6]
+
     return &Client{
         address: r.RemoteAddr,
-        agent: "",
-        browser: r.Header.Get("Sec-WebSocket-Key"),
+        agent: ParseUserAgent(r),
+        id: browserId,
     }
 }

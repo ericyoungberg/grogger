@@ -13,25 +13,28 @@
     methods.forEach(method => {
         const _method = _console[method];
 
-        console[method] = (message, send = true) => {
-            _method(message);
-
-            if (send) {
+        console[method] = function(...args) {
+            if (typeof args[args.length - 1] === 'object' && args[args.length - 1].__preventGrog) {
+                args.pop();
+            }
+            else {
                 socket.send(JSON.stringify({
-                    message,
+                    message: args,
                     method,
                 }));
             }
+
+            _method(...args);
         };
     });
 
     socket.addEventListener('open', e => {
-        console.info('Joined the session')
+        console.info('Joined the session');
     });
 
     socket.addEventListener('message', ({ data }) => {
         data = JSON.parse(data);
-        console[data.method](`${data.sender}: ${data.message}`, false);
+        console[data.method](data.sender, ': ', ...data.message, { __preventGrog: true });
     });
 
 })();

@@ -25,7 +25,7 @@ func (s *Session) getClient(r *http.Request) *Client {
         }
     }
 
-    s.log(client.browser + " connected")
+    s.log(client.id + " connected")
 
     // Create a new client since the client is new to this session
     s.clients = append(s.clients, client)

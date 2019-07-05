@@ -13,10 +13,7 @@ RUN set -e; \
         curl \
         make \
     ; \
-    curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
-    ; \
-    echo "dep ensure" > entrypoint.sh \
-    && echo 'make static ARCH=${ARCH}' >> entrypoint.sh \
+    echo 'make static ARCH=${ARCH}' >> entrypoint.sh \
     && chmod +x entrypoint.sh
 
 WORKDIR /go/src/github.com/ericyoungberg/grogger
