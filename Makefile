@@ -1,7 +1,7 @@
 #-- Define 
 BUILD_DIR = build
 PKG 	  = github.com/ericyoungberg/grogger
-ARCH 	 ?= darwin/amd64
+ARCH 	 ?= linux/amd64
 BIN       = grogger
 
 BUILD_CONTAINER = "${BIN}-builder"

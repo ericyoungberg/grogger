@@ -79,7 +79,7 @@ func (s Server) handleWS(w http.ResponseWriter, r *http.Request) {
             return
         }
 
-        sender := fmt.Sprintf("{\"sender\": \"%s [%s]\",", client.agent, client.id)
+        sender := fmt.Sprintf("{\"browser\": \"%s\", \"sender\": \"%s\", ", client.agent, client.id)
         msgWithSender := strings.Replace(string(msg), "{", sender, 1)
         session.log(msgWithSender)
         msg = []byte(msgWithSender)
