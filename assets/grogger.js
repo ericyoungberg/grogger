@@ -144,8 +144,19 @@
  */
 (() => {
 
+    const session = '{{SESSION}}';
+    let protocol = 'ws';
+
+    Array.from(document.scripts).forEach(script => {
+      if (script.src.indexOf(session) !== -1) {
+          if (script.src.indexOf('https:') !== -1) {
+            protocol = 'wss';
+          }
+      }
+    });
+
     const color = Colors();
-    const socket = new WebSocket('ws://{{SESSION}}');
+    const socket = new WebSocket(`${protocol}://${session}`);
     const _console = console;
 
     const methods = [

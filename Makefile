@@ -5,7 +5,7 @@
 BIN  = grogger
 REPO = github.com/ericyoungberg/$(BIN)
 
-GO 		:= go
+GO 		:= packr
 BUILD   := build/$(BIN)
 DESTDIR := /usr/local/bin
 
@@ -21,7 +21,7 @@ all: clean $(BUILD)
 # Build the binary
 $(BUILD): *.go
 	@echo "+ $@"
-	$(GO) build $(LDFLAGS) -v -o $(BUILD) ./.
+	$(GO) build -v -o "${BUILD}"
 
 # Build and run the binary
 .PHONY: run
