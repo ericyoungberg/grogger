@@ -1,7 +1,7 @@
 # Grogger
 ### Pass the `console.log` around
 
-For multiplexing logs over multiple platforms in pub-sub fashion, using nothing more than a `<script>` tag.
+For logging across browsers in pub-sub fashion, using nothing more than a `<script>` tag.
 
 
 ## Installation
@@ -14,12 +14,7 @@ cd grogger
 #### With Go (linux/amd64)
 ```
 make
-cp build/grogger /usr/local/bin/grogger
-```
-
-#### With Docker
-```
-make with-docker ARCH=$your-architecture
+sudo make install
 ```
 
 
